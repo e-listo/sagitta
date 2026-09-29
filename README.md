@@ -1,39 +1,75 @@
 # Sagitta
 
-Halaman konsep untuk [sagitta.my.id](https://sagitta.my.id), ruang editorial Benaya Johan Sagitta: creator, writer, dan visual artist.
+Tema WordPress kustom untuk [sagitta.my.id](https://sagitta.my.id), ruang editorial Benaya Johan Sagitta.
 
-Status sekarang: **creative production in progress**. Ini belum situs peluncuran. Galeri memakai gambar publik sebagai placeholder, dan beberapa salinan masih draf.
+Situs menggunakan WordPress inti yang dipasang di server. Repositori ini **bukan** salinan WordPress: pada keadaan akhir, repositori hanya menyimpan tema `Sagitta` dan kode yang diperlukan untuk mengembangkannya.
 
-## Isi repo
+## Status
 
-| Path | Fungsi |
-| --- | --- |
-| `index.html` | Halaman konsep, satu file. Tailwind, Font Awesome, dan Google Fonts dimuat lewat CDN. |
-| `docs/konten-dan-deliverable.md` | Penyelarasan dua draf lama, salinan yang belum final, dan urutan deliverable. |
-| `README.md` | Peta repo ini. |
+- WordPress telah terpasang pada akar addon domain `sagitta.my.id`.
+- Tema bawaan WordPress masih dipakai sementara sebagai fallback.
+- Tema kustom `Sagitta` belum dibuat maupun diaktifkan.
+- `index.html` dan `docs/konten-dan-deliverable.md` adalah artefak fase landing-page sebelumnya; keduanya menjadi acuan visual dan perencanaan selama migrasi, bukan berkas yang dideploy sebagai tema.
 
-## Pratinjau
+## Arah desain
 
-Buka `index.html` di browser. Tidak ada langkah build.
+- Dark luxury editorial
+- Latar utama `#090A0F`
+- Aksen emas `#D4AF37`
+- Judul: Cormorant Garamond
+- Teks antarmuka: Plus Jakarta Sans
+- Konten: pengaturan situs, karya visual, tulisan, dan proyek media
 
-Yang bisa dicoba di halaman:
+Tampilan dibuat khusus; tidak menggunakan tema jadi atau page builder.
 
-- navigasi halus dan menu mobile
-- modal Hubungi / Kolaborasi, yang membuka aplikasi surel
-- formulir kabar, yang hanya menampilkan pesan di halaman dan tidak menyimpan email
+## Target struktur
 
-## Yang belum final
+Setelah kerangka tema dibuat, akar repositori akan berisi:
 
-- kutipan di bagian tentang
-- surel `contact@sagitta.my.id`
-- tautan Instagram, X, dan Medium
-- potret dan karya asli
+```text
+sagitta/
+├── style.css
+├── functions.php
+├── index.php
+├── front-page.php
+├── header.php
+├── footer.php
+├── screenshot.png
+├── assets/
+│   ├── css/
+│   └── js/
+└── inc/
+    ├── setup.php
+    ├── content-types.php
+    └── customizer.php
+```
 
-Rinciannya ada di `docs/konten-dan-deliverable.md`.
+Tema akan dideploy ke:
 
-## Berikutnya
+```text
+/home/gotk4859/public_html/sagitta.my.id/wp-content/themes/sagitta/
+```
 
-1. Kunci identitas: potret, kutipan, surel, dan tautan sosial.
-2. Masukkan 8–12 karya visual, 3 bacaan, dan 2–4 proyek media.
-3. Putuskan apakah formulir kabar benar-benar menyimpan alamat.
-4. Pasang domain ke hosting statis, lalu ganti status *in progress*.
+Jangan meng-clone versi repositori saat ini langsung ke direktori tema. Struktur tema belum dibentuk dan belum siap diaktifkan.
+
+## Batas proyek
+
+- Jangan memodifikasi atau mem-fork inti WordPress.
+- Jangan memakai page builder atau tema jadi.
+- Jangan menambah plugin tanpa kebutuhan yang disetujui.
+- Jangan commit `wp-config.php`, inti WordPress, `wp-content/uploads/`, cadangan basis data, kredensial, atau token.
+- Jangan menimpa `.htaccess`, `.well-known`, `.user.ini`, atau `php.ini` di akar domain.
+- Tidak ada pendaftaran publik, toko, atau penyimpanan email pada tahap ini.
+- Jangan mengarang biografi, kutipan, maupun karya.
+
+## Tahapan berikutnya
+
+1. Membuat kerangka minimum tema agar dikenali WordPress.
+2. Memindahkan sistem desain landing page ke template PHP dan aset tema.
+3. Mengaktifkan serta menguji tema di lingkungan produksi.
+4. Menambahkan model konten `Karya` dan `Proyek` setelah halaman depan stabil.
+5. Mengganti placeholder dengan konten dan tautan yang telah disetujui.
+
+## Pengembangan lokal dan deploy
+
+Tema dikembangkan dengan Git dan disinkronkan ke folder tema WordPress. Inti WordPress, konfigurasi server, basis data, serta unggahan dikelola di server dan berada di luar ruang lingkup repositori ini.
