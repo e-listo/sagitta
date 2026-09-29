@@ -19,4 +19,14 @@ function sagitta_assets() {
     wp_enqueue_script('sagitta-main', get_template_directory_uri() . '/assets/js/main.js', array(), $version, true);
 }
 add_action('wp_enqueue_scripts', 'sagitta_assets');
-function sagitta_menu_fallback() { echo '<ul class="site-menu"><li><a href="' . esc_url(home_url('/')) . '">Beranda</a></li><li><a href="' . esc_url(get_post_type_archive_link('post')) . '">Tulisan</a></li></ul>'; }
+function sagitta_menu_fallback() {
+    $posts_page_id = (int) get_option('page_for_posts');
+    $posts_url = $posts_page_id ? get_permalink($posts_page_id) : '';
+    echo '<ul class="site-menu"><li><a href="' . esc_url(home_url('/')) . '">Beranda</a></li><li>';
+    if ($posts_url) {
+        echo '<a href="' . esc_url($posts_url) . '">Tulisan</a>';
+    } else {
+        echo '<span aria-disabled="true" title="Halaman Tulisan belum dikonfigurasi">Tulisan</span>';
+    }
+    echo '</li></ul>';
+}
