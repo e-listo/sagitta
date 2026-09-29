@@ -47,7 +47,7 @@ sagitta/
 Tema akan dideploy ke:
 
 ```text
-https://sagitta.my.id/wp-content/themes/sagitta/
+sagitta.my.id/wp-content/themes/sagitta/
 ```
 
 Jangan meng-clone versi repositori saat ini langsung ke direktori tema. Struktur tema belum dibentuk dan belum siap diaktifkan.
