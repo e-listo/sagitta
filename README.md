@@ -1,47 +1,37 @@
 # Sagitta
 
-Tema WordPress kustom untuk [sagitta.my.id](https://sagitta.my.id), ruang editorial Benaya Johan Sagitta.
+Tema WordPress kustom untuk situs editorial Sagitta.
 
-## Status
+## Status pada branch ini
 
-Milestone 1 sedang dikerjakan pada branch `feat/m1-theme-foundation`. Branch ini membangun fondasi tema klasik `Sagitta`; `main` tetap menjadi branch rilis sampai PR ditinjau dan di-merge.
+| Milestone | Status | Ringkasan |
+| --- | --- | --- |
+| M1 — Fondasi tema | Selesai | Fondasi tema, template awal, dan aset dasar. |
+| M2 — Beranda editorial | Selesai | Beranda editorial, daftar tulisan terbaru dari pos terbit, dan empty state. |
 
-Tema dibuat tanpa page builder atau tema jadi. WordPress inti, konfigurasi server, basis data, dan unggahan media tidak disimpan di repositori ini.
+Branch ini adalah snapshot pekerjaan M2. Pekerjaan berikutnya dibuat pada branch fitur terpisah dari `main`.
 
-## Struktur tema
+## Cakupan
 
-```text
-assets/       CSS dan JavaScript tema
-inc/          bootstrap dan fungsi tema
-header.php    header dan navigasi utama
-footer.php    footer global
-front-page.php beranda editorial
-index.php     template fallback
-404.php       halaman tidak ditemukan
-style.css     metadata tema WordPress
-functions.php titik masuk fungsi tema
-```
+Repository hanya menyimpan tema `sagitta`. Jangan commit atau mengubah WordPress core, `wp-config.php`, database, unggahan, kredensial, atau konfigurasi server.
 
-## Arah desain
+Jangan membuat folder `/next`, memakai page builder/tema jadi, atau menambah plugin tanpa kebutuhan terdokumentasi. Jangan mengarang biografi, kutipan, karya, gambar placeholder, atau informasi kontak. Tidak ada newsletter, pendaftaran publik, toko, atau penyimpanan email.
 
-- Dark luxury editorial
-- Latar utama `#090A0F`
-- Aksen emas `#D4AF37`
-- Heading Cormorant Garamond
-- Teks antarmuka Plus Jakarta Sans
+## Desain
 
-## Batas proyek
+- Latar `#090A0F`; aksen `#D4AF37`
+- Judul: Cormorant Garamond
+- Teks antarmuka: Plus Jakarta Sans
+- Gaya: dark luxury editorial
 
-- Jangan memodifikasi atau mem-fork inti WordPress.
-- Jangan memakai page builder atau tema jadi.
-- Jangan menambah plugin tanpa kebutuhan yang disetujui.
-- Jangan commit `wp-config.php`, kredensial, token, dump basis data, atau unggahan pribadi.
-- Tidak ada pendaftaran publik, toko, atau penyimpanan email pada tahap ini.
-- Jangan mengarang biografi, kutipan, maupun karya.
+## Struktur M2
 
-## Berikutnya
+- `front-page.php`: beranda editorial
+- `assets/css/home.css`: gaya khusus beranda
+- `inc/setup.php`: setup tema dan enqueue aset
 
-1. Tinjau dan merge fondasi tema pada PR #1.
-2. Aktifkan tema dan uji di WordPress.
-3. Tambahkan model konten Karya dan Proyek setelah beranda stabil.
-4. Ganti placeholder dengan konten yang telah disetujui.
+## Workflow dan deploy
+
+Gunakan branch fitur, commit terfokus, pull request ke `main`, lalu deploy versi `main` dari clone tema yang sudah ada di server. Sebelum deploy, pastikan working tree bersih dan branch aktif adalah `main`, kemudian gunakan `git pull --ff-only origin main`.
+
+Jangan menjalankan `git reset --hard` atau `git clean -fd` sebagai prosedur deploy rutin. Jangan mengubah `.well-known`, `.user.ini`, `php.ini`, atau aturan keamanan `.htaccess` tanpa persetujuan.
