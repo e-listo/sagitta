@@ -15,6 +15,7 @@ function sagitta_assets() {
     wp_enqueue_style('sagitta-style', get_stylesheet_uri(), array(), $version);
     wp_enqueue_style('sagitta-main', get_template_directory_uri() . '/assets/css/main.css', array('sagitta-style'), $version);
     if (is_front_page()) { wp_enqueue_style('sagitta-home', get_template_directory_uri() . '/assets/css/home.css', array('sagitta-main'), $version); }
+    if (is_home() || is_archive() || is_singular('post')) { wp_enqueue_style('sagitta-writing', get_template_directory_uri() . '/assets/css/writing.css', array('sagitta-main'), $version); }
     wp_enqueue_script('sagitta-main', get_template_directory_uri() . '/assets/js/main.js', array(), $version, true);
 }
 add_action('wp_enqueue_scripts', 'sagitta_assets');
