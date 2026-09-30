@@ -23,6 +23,25 @@ function sagitta_assets() {
 }
 add_action('wp_enqueue_scripts', 'sagitta_assets');
 
-function sagitta_menu_fallback() {
-    echo '<ul class="site-menu"><li><a href="' . esc_url(home_url('/')) . '">Beranda</a></li><li><a href="' . esc_url(get_post_type_archive_link('post')) . '">Tulisan</a></li><li><a href="' . esc_url(get_post_type_archive_link('karya')) . '">Karya visual</a></li><li><a href="' . esc_url(get_post_type_archive_link('proyek')) . '">Proyek media</a></li></ul>';
+function sagitta_writing_url() {
+    $posts_page_id = (int) get_option('page_for_posts');
+    return $posts_page_id ? get_permalink($posts_page_id) : home_url('/#tulisan');
 }
+
+function sagitta_menu_fallback() {
+    echo '<ul class="site-menu"><li><a href="' . esc_url(home_url('/')) . '">Beranda</a></li><li><a href="' . esc_url(sagitta_writing_url()) . '">Tulisan</a></li><li><a href="' . esc_url(get_post_type_archive_link('karya')) . '">Karya visual</a></li><li><a href="' . esc_url(get_post_type_archive_link('proyek')) . '">Proyek media</a></li></ul>';
+}
+
+function sagitta_fix_primary_writing_menu_link($items, $args) {
+    if (empty($args->theme_location) || 'primary' !== $args->theme_location) {
+        return $items;
+    }
+    $home_url = untrailingslashit(home_url('/'));
+    foreach ($items as $item) {
+        if ('Tulisan' === trim(wp_strip_all_tags($item->title)) && untrailingslashit($item->url) === $home_url) {
+            $item->url = sagitta_writing_url();
+        }
+    }
+    return $items;
+}
+add_filter('wp_nav_menu_objects', 'sagitta_fix_primary_writing_menu_link', 10, 2);
