@@ -8,7 +8,8 @@
         <p class="lede">Ruang untuk karya visual, tulisan, dan proyek media yang diterbitkan dengan sengaja.</p>
         <div class="home-actions"><a class="button" href="#ruang">Jelajahi ruang</a><a class="text-link" href="#tulisan">Catatan terbaru <span aria-hidden="true">↓</span></a></div>
       </div>
-      <aside class="edition-card"><p class="eyebrow">Edisi awal</p><p class="edition-number">00</p><p>Arsip sedang disusun. Setiap bagian akan diisi ketika karya dan konteksnya siap dibagikan.</p><ol><li><span>01</span>Karya visual</li><li><span>02</span>Tulisan</li><li><span>03</span>Proyek media</li></ol></aside>
+      <?php $posts_page_id = (int) get_option('page_for_posts'); $writing_url = $posts_page_id ? get_permalink($posts_page_id) : home_url('/#tulisan'); ?>
+      <aside class="edition-card"><p class="eyebrow">Edisi awal</p><p class="edition-number">00</p><p>Arsip sedang disusun. Setiap bagian akan diisi ketika karya dan konteksnya siap dibagikan.</p><ol><li><a href="<?php echo esc_url(get_post_type_archive_link('karya')); ?>"><span aria-hidden="true">01</span>Karya visual</a></li><li><a href="<?php echo esc_url($writing_url); ?>"><span aria-hidden="true">02</span>Tulisan</a></li><li><a href="<?php echo esc_url(get_post_type_archive_link('proyek')); ?>"><span aria-hidden="true">03</span>Proyek media</a></li></ol></aside>
     </div>
   </section>
   <section class="shell editorial-intro"><p class="eyebrow">Sebuah pengantar</p><h2>Bukan sekadar etalase, melainkan arsip yang tumbuh perlahan.</h2><p>Sagitta disiapkan untuk menempatkan karya bersama proses, waktu, dan konteksnya. Yang diterbitkan akan hadir ketika memang siap diberi tempat.</p></section>
